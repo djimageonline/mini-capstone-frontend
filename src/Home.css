@@ -1,0 +1,12 @@
+#signups {
+  display: flex;
+  text-align: left;
+  color: rgb(82, 82, 169);
+  padding-top: 20px;
+  padding-left: 20px;  /* margin-left: 50px; */
+  justify-content: center;
+}
+
+#logout {
+  background-color: azure;
+}

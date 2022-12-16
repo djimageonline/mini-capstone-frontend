@@ -5,6 +5,10 @@ import { ProductsNew } from "./ProductsNew";
 import { Link } from "react-router-dom";
 import { Modal } from "./Modal";
 import { ProductsShow } from "./ProductsShow";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { LogoutLink } from "./Logout";
+import "./Home.css";
 
 export function Home() {
   const [products, setProducts] = useState([]);
@@ -73,7 +77,14 @@ export function Home() {
   return (
     <div>
       <h1>Welcome ShopR</h1>
-      <ProductsNew onCreateProduct={handleCreateProduct} />
+      <div id="signups">
+        <Signup />
+        <Login />
+        <ProductsNew onCreateProduct={handleCreateProduct} />
+      </div>
+      <div id="logout">
+        <LogoutLink />
+      </div>
       <ProductsIndex products={products} onShowProduct={handleShowProduct} />
       <Modal show={isProductsShowVisibile} onClose={handleClose}>
         <ProductsShow
