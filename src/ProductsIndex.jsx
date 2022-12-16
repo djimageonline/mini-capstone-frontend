@@ -1,6 +1,6 @@
 export function ProductsIndex(props) {
   return (
-    <div>
+    <div id="products-index">
       <h2>All Products</h2>
       {props.products.map((product) => (
         <div key={product.id}>

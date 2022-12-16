@@ -26,8 +26,13 @@ export function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#posts-index">
+                  <a className="nav-link" href="/AllProducts">
                     All Product
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#posts-new">
+                    Create New Product
                   </a>
                 </li>
                 <li className="nav-item">
