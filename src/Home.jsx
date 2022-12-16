@@ -43,6 +43,31 @@ export function Home() {
     setIsProductShowVisible(false);
   };
 
+  //make an update function and pass it into the show component
+  const handleUpdateProduct = (id, params) => {
+    console.log("handleUpdateProduct", params);
+    axios.patch(`http://localhost:3000/products/${id}.json`, params).then((response) => {
+      setProducts(
+        products.map((product) => {
+          if (product.id === response.data.id) {
+            return response.data;
+          } else {
+            return product;
+          }
+        })
+      );
+      handleClose();
+    });
+  };
+
+  const handleDestroyProduct = (product) => {
+    console.log("handleDestroyProduct", product);
+    axios.delete(`http://localhost:3000/products/${product.id}.json`).then((response) => {
+      setProducts(products.filter((p) => p.id !== product.id));
+      handleClose();
+    });
+  };
+
   useEffect(handleIndexProduct, []);
 
   return (
@@ -51,7 +76,11 @@ export function Home() {
       <ProductsNew onCreateProduct={handleCreateProduct} />
       <ProductsIndex products={products} onShowProduct={handleShowProduct} />
       <Modal show={isProductsShowVisibile} onClose={handleClose}>
-        <ProductsShow product={currentProduct} />
+        <ProductsShow
+          product={currentProduct}
+          onUpdateProduct={handleUpdateProduct}
+          onDestroyProduct={handleDestroyProduct}
+        />
       </Modal>
     </div>
   );
