@@ -4,13 +4,14 @@ import { ProductsIndex } from "./ProductsIndex";
 import { ProductsNew } from "./ProductsNew";
 import { Link } from "react-router-dom";
 import { Modal } from "./Modal";
+import { ProductsShow } from "./ProductsShow";
 
 export function Home() {
   const [products, setProducts] = useState([]);
 
   // make state to show and hide the modal
   const [isProductsShowVisibile, setIsProductShowVisible] = useState(false);
-  const [currentProduct, setcurrentProduct] = useState({});
+  const [currentProduct, setCurrentProduct] = useState({});
 
   // handles index from backend with axios
   const handleIndexProduct = () => {
@@ -34,7 +35,7 @@ export function Home() {
   const handleShowProduct = (product) => {
     console.log("handleShowProduct", product);
     setIsProductShowVisible(true);
-    setcurrentProduct;
+    setCurrentProduct(product);
   };
   // Need to handle the close in the Modal
   const handleClose = () => {
@@ -50,7 +51,7 @@ export function Home() {
       <ProductsNew onCreateProduct={handleCreateProduct} />
       <ProductsIndex products={products} onShowProduct={handleShowProduct} />
       <Modal show={isProductsShowVisibile} onClose={handleClose}>
-        <h1>Test</h1>
+        <ProductsShow product={currentProduct} />
       </Modal>
     </div>
   );
